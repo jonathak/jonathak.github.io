@@ -1,0 +1,227 @@
+<html><head><meta charset="UTF-8"></head><body>
+
+<script src="./Chart.js"></script>
+<script src="./cards.js"></script>
+<script src="./charts.js"></script>
+<table style="margin-left:auto;margin-right:auto;">
+<tbody>
+<tr>
+<td><img src="./pngcards/back.png", id="h1", onclick="clickcard(h1)"></td>
+<td><img src="./pngcards/back.png", id="h2", onclick="clickcard(h2)"></td>
+<td><img src="./spacer.png"></td>
+<td><img src="./pngcards/back.png", id="f1", onclick="clickcard(f1)"></td>
+<td><img src="./pngcards/back.png", id="f2", onclick="clickcard(f2)"></td>
+<td><img src="./pngcards/back.png", id="f3", onclick="clickcard(f3)"></td>
+<td><img src="./spacer.png"></td>
+<td><img src="./pngcards/back.png", id="p1", onclick="clickcard(p1)"></td>
+<td><img src="./pngcards/back.png", id="p2", onclick="clickcard(p2)"></td>
+</tr>
+<tr>
+<td align="center">
+  <select id="h1r">
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="T">T</option>
+    <option value="J">J</option>
+    <option value="Q">Q</option>
+    <option value="K">K</option>
+    <option value="A">A</option>
+  </select>
+    <select id="h1s">
+    <option value="C">C</option>
+    <option value="D">D</option>
+    <option value="H">H</option>
+    <option value="S">S</option>
+  </select>
+  <button id="h1b", onclick="bclick(h1r, h1s, h1)">+</button>
+  <input id="lo1", type="checkbox"></input>
+</td>
+<td align="center">
+  <select id="h2r">
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="T">T</option>
+    <option value="J">J</option>
+    <option value="Q">Q</option>
+    <option value="K">K</option>
+    <option value="A">A</option>
+  </select><select id="h2s">
+    <option value="C">C</option>
+    <option value="D">D</option>
+    <option value="H">H</option>
+    <option value="S">S</option>
+  </select>
+  <button id="h2b", onclick="bclick(h2r, h2s, h2)">+</button>
+  <input id="lo2", type="checkbox"></input>
+</td>
+<td></td>
+<td align="center">
+  <select id="f1r">
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="T">T</option>
+    <option value="J">J</option>
+    <option value="Q">Q</option>
+    <option value="K">K</option>
+    <option value="A">A</option>
+  </select><select id="f1s">
+    <option value="C">C</option>
+    <option value="D">D</option>
+    <option value="H">H</option>
+    <option value="S">S</option>
+  </select>
+  <button id="f1b", onclick="bclick(f1r, f1s, f1)">+</button>
+  <input id="lo3", type="checkbox"></input>
+</td>
+<td align="center">
+  <select id="f2r">
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="T">T</option>
+    <option value="J">J</option>
+    <option value="Q">Q</option>
+    <option value="K">K</option>
+    <option value="A">A</option>
+  </select><select id="f2s">
+    <option value="C">C</option>
+    <option value="D">D</option>
+    <option value="H">H</option>
+    <option value="S">S</option>
+  </select>
+  <button id="f2b", onclick="bclick(f2r, f2s, f2)">+</button>
+  <input id="lo4", type="checkbox"></input>
+</td>
+<td align="center">
+  <select id="f3r">
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="T">T</option>
+    <option value="J">J</option>
+    <option value="Q">Q</option>
+    <option value="K">K</option>
+    <option value="A">A</option>
+  </select><select id="f3s">
+    <option value="C">C</option>
+    <option value="D">D</option>
+    <option value="H">H</option>
+    <option value="S">S</option>
+  </select>
+  <button id="h2b", onclick="bclick(f3r, f3s, f3)">+</button>
+  <input id="lo5", type="checkbox"></input>
+</td>
+<td></td>
+<td align="center">
+  <select id="p1r">
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="T">T</option>
+    <option value="J">J</option>
+    <option value="Q">Q</option>
+    <option value="K">K</option>
+    <option value="A">A</option>
+  </select><select id="p1s">
+    <option value="C">C</option>
+    <option value="D">D</option>
+    <option value="H">H</option>
+    <option value="S">S</option>
+  </select>
+  <button id="p1b", onclick="bclick(p1r, p1s, p1)">+</button>
+  <input id="lo6", type="checkbox"></input>
+</td>
+<td align="center">
+  <select id="p2r">
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="T">T</option>
+    <option value="J">J</option>
+    <option value="Q">Q</option>
+    <option value="K">K</option>
+    <option value="A">A</option>
+  </select><select id="p2s">
+    <option value="C">C</option>
+    <option value="D">D</option>
+    <option value="H">H</option>
+    <option value="S">S</option>
+  </select>
+  <button id="p2b", onclick="bclick(p2r, p2s, p2)">+</button>
+  <input id="lo7", type="checkbox"></input>
+</td>
+</tr>
+</tbody>
+</table>
+<p> 
+  <button id="sh", onclick="indices()">indices</button>
+  <span id="h1i">--</span>
+  <span id="h2i">--</span>
+  <span id="f1i">--</span>
+  <span id="f2i">--</span>
+  <span id="f3i">--</span>
+  <span id="p1i">--</span>
+  <span id="p2i">--</span>
+</p>
+<p> 
+  <button onclick="cards()">cards</button>
+  <span id="c1">--</span>
+  <span id="c2">--</span>
+  <span id="c3">--</span>
+  <span id="c4">--</span>
+  <span id="c5">--</span>
+  <span id="c6">--</span>
+  <span id="c7">--</span>
+</p>
+<p><button onclick="gimmie()">gimmie</button></p>
+<p><button onclick="runsim()">runsim</button></p>
+<p><button onclick="headtohead()">headtohead</button><span id="hth">--</span></p>
+<p><button onclick="myflush()">flush?</button><span id="flsh">--</span></p>
+<p><button onclick="mystraight()">straight?</button><span id="strt">--</span></p>
+<p><button onclick="myheight()">height?</button><span id="qds">--</span></p>
+<p><button onclick="myjkcode()">jkcode</button><span id="jkc">--</span></p>
+<p><button onclick="myjkcode2()">jkcode2</button><span id="jkc2">--</span></p>
+<p><button onclick="betterhands()">betterhands</button><span id="bh">--</span></p>
+<div id="div1"></div>
+
+<div><canvas id="myChart" width="400" height="400"></canvas></div>
+
+</body></html>
