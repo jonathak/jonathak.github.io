@@ -1,2 +1,3 @@
 - [texas holdem probability](https://jonathak.github.io/cards.html)
 - [iphone](https://jonathak.github.io/iphone.html)
+- [demo](https://jonathak.github.io/demo/index.html)
