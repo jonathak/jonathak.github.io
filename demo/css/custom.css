@@ -1,7 +1,8 @@
 /* Shared
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .button {
-  border-radius: 100px;
+  border-radius: 1em 4em 1em 4em / 2em 1em 2em 1em;
+  box-shadow: 2px 2px 2px 2px #777777;
 }
 
 /* Sections
