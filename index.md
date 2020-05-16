@@ -1,3 +1,4 @@
 - [texas holdem probability](https://jonathak.github.io/cards.html)
 - [booger](https://jonathak.github.io/booger.html)
 - [demo](https://jonathak.github.io/demo/index.html)
+- [canvas](https://jonathak.github.io/booger.html)

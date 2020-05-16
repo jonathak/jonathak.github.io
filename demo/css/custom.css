@@ -21,20 +21,23 @@ __________________________________________________ */
 
 .my-menu {
   background-color: white;
-  height: 8rem;
+  height: 6rem;
   width: 100%;
   position: fixed;
+  top: 0px;
   z-index: 50;
+  border-style: none;
+  margin: 0px 0px 0px 0px;
 }
 .logo-l {
   height: 6rem;
-  margin: 1rem 1rem 1rem 1rem;
+  padding: 0rem 1rem 1rem 1rem;
   float: left;
 }
 
 .logo-r {
   height: 4rem;
-  margin: 2rem 1rem 1rem 1rem;
+  padding: 1rem 1rem 1rem 1rem;
   float: right;
 }
 
@@ -54,7 +57,16 @@ __________________________________________________ */
 }
 
 .hero {
-  background-image: url('../images/fart.png');
+  margin: 20px 0px 0px 0px;
+  height: 400px;
+  background-image: url('../images/lipo.png');
+  background-size: cover;
+  z-index: 40;
+}
+
+.hero-heading {
+  font-weight: bold;
+  color: white;
 }
 
 /* Values
