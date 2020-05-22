@@ -1,0 +1,54 @@
+<!-- plum.js -->
+<!-- copyright 2020 jonathan kaufman -->
+
+<!doctype html>
+
+<p><img id="thecard" src="./back3.png" style="width: 144px; height: 205px"></p>
+
+<script>
+  if (true) {
+
+    let lastX;
+    let lastY;
+
+    let faces = new Map;
+    let ranks = ['2','3','4','5','6','7','8','9','T','J','Q','K','A']
+    let suites = ['H','D','C','S']
+    for (r of ranks) {
+      for (s of suites) {
+        let img = document.createElement("img");
+        img.src = "pngcards/"+r+s+".png";
+        faces.set(r+s, img)
+      }
+    }
+
+    let thecard = document.getElementById("thecard");
+    thecard.addEventListener("mousedown", event => {
+      if (event.button == 0) {
+        lastX = event.clientX;
+        lastY = event.clientY;
+        window.addEventListener("mousemove", moved);
+        event.preventDefault();
+      }
+    });
+
+    function moved(event) {
+      if (event.buttons == 0) {
+        window.removeEventListener("mousemove", moved);
+      } else {
+        let x = event.clientX;
+        let y = event.clientY;
+        let constrain = (x,floor,ceiling) => Math.min(Math.max(floor,x),ceiling);
+        let row = 13-Math.floor(y/15);
+        let column = Math.floor(x/36);
+        let rank = ranks[constrain(row,0,12)];
+        let suite = suites[constrain(column,0,3)];
+        //console.log(rank+suite);
+        thecard.src = faces.get(rank+suite).src;
+        lastX = event.clientX;
+        lastY = event.clientY;
+      }
+    }
+  }
+</script>
+
