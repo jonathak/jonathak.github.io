@@ -3,52 +3,53 @@
 
 <!doctype html>
 
-<p><img id="thecard" src="./back3.png" style="width: 144px; height: 205px"></p>
+<p>
+  <img id="f1" src="./back3.png" style="width: 144px; height: 205px">
+  <img id="f2" src="./back3.png" style="width: 144px; height: 205px">
+  <img id="f3" src="./back3.png" style="width: 144px; height: 205px">
+</p>
+<p id="show"></p>
 
 <script>
-  if (true) {
-
-    let lastX;
-    let lastY;
-
-    let faces = new Map;
-    let ranks = ['2','3','4','5','6','7','8','9','T','J','Q','K','A']
-    let suites = ['H','D','C','S']
-    for (r of ranks) {
-      for (s of suites) {
-        let img = document.createElement("img");
-        img.src = "pngcards/"+r+s+".png";
-        faces.set(r+s, img)
-      }
-    }
-
-    let thecard = document.getElementById("thecard");
-    thecard.addEventListener("mousedown", event => {
-      if (event.button == 0) {
-        lastX = event.clientX;
-        lastY = event.clientY;
-        window.addEventListener("mousemove", moved);
-        event.preventDefault();
-      }
-    });
-
-    function moved(event) {
-      if (event.buttons == 0) {
-        window.removeEventListener("mousemove", moved);
-      } else {
-        let x = event.clientX;
-        let y = event.clientY;
-        let constrain = (x,floor,ceiling) => Math.min(Math.max(floor,x),ceiling);
-        let row = 13-Math.floor(y/15);
-        let column = Math.floor(x/36);
-        let rank = ranks[constrain(row,0,12)];
-        let suite = suites[constrain(column,0,3)];
-        //console.log(rank+suite);
-        thecard.src = faces.get(rank+suite).src;
-        lastX = event.clientX;
-        lastY = event.clientY;
-      }
-    }
+const faces = new Map;
+const ranks = ['2','3','4','5','6','7','8','9','T','J','Q','K','A']
+const suites = ['H','D','C','S']
+for (r of ranks) {
+  for (s of suites) {
+    let img = document.createElement("img");
+    img.src = "pngcards/"+r+s+".png";
+    faces.set(r+s, img)
   }
+}
+const state = new Map;
+const pressed = function(event) {
+  if (event.button == 0) {
+    event.target.addEventListener("mousemove", moved);
+    event.preventDefault();
+  }
+}
+const moved = function(event) {
+  if (event.buttons == 0) {
+    event.target.removeEventListener("mousemove", moved);
+  } else {
+    let x = event.clientX;
+    let xx;
+    if      (x>288) {xx=x-288; cname='f3'}
+    else if (x>144) {xx=x-144; cname='f2'}
+    else            {xx=x    ; cname='f1'};
+    let constrain = (num,floor,ceiling) => {return  Math.min(Math.max(floor,num),ceiling)};
+    let row = 13-Math.floor(event.clientY/15);
+    let column = Math.floor(xx/36);
+    let rank = ranks[constrain(row,0,12)];
+    let suite = suites[constrain(column,0,3)];
+    event.target.src = faces.get(rank+suite).src;
+    state.set(cname, rank+suite);
+    console.log(state);
+  }
+}
+for (cardname of ['f1','f2','f3']) {
+  let card = document.getElementById(cardname);
+  card.addEventListener("mousedown", pressed);
+}
 </script>
 
