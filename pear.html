@@ -34,12 +34,15 @@ td {    border: 1px solid #990000;
     text-align: center;}
 
 td:hover {background-color: rgb(176,230,245);}
+
+.clean {border: 1px solid white;}
+.clean:hover {background-color: white;}
 </style>
 
 <script>
-const ranks = ['2','3','4','5','6','7','8','9','T','J','Q','K','A']
-const suites = ['H','D','C','S']
-const faces = new Map;
+const ranks = ['2','3','4','5','6','7','8','9','T','J','Q','K','A'];
+const suites = ['H','D','C','S'];
+const faces = new Map();
 for (r of ranks) {
   for (s of suites) {
     let img = document.createElement("img");
@@ -49,21 +52,46 @@ for (r of ranks) {
 }
 
 let tbl = document.getElementsByTagName("table")[0];
-for (let i=0; i < ranks.length+1; i++) {tbl.appendChild(document.createElement("tr"));}
 let rows = tbl.children;
+for (let i=0; i < ranks.length+1; i++) {
+  tbl.appendChild(document.createElement("tr"));
+}
 for (let i=rows.length-1; i>-1; i--) {
   for (let i=0; i<14; i++) {rows[i].appendChild(document.createElement("td"));}
 }
-let fart = tbl.children[0].children
-let txt;
+
+let head = tbl.firstChild.children;
 for (let i=1; i<14; i++) {
-  txt = document.createTextNode(ranks[13-i]);
-  fart.item(i).appendChild(txt);
+  let txt = document.createTextNode(ranks[13-i]);
+  head.item(i).appendChild(txt);
+  head.item(i).className = "clean";
 }
-const state = new Map;
-state.set('f1','');
-state.set('f2','');
-state.set('f3','');
+
+for (let i=1; i<14; i++) {
+  left = rows.item(i).firstChild
+  let txt = document.createTextNode(ranks[13-i]);
+  left.appendChild(txt);
+  left.className = "clean";
+}
+
+let topleftbox = document.getElementsByTagName("table").item(0).firstChild.firstChild;
+topleftbox.className = "clean";
+
+let holes = new Map(); //returns a table cell given hole string
+for (let i=1; i<14; i++) {
+  let rowname = ranks[13-i];
+  let row = rows.item(i);
+  for (let j=1; j<14; j++) {
+    let colname = ranks[13-j];
+    let cell = row.children.item(j);
+    holes.set(`${rowname}${colname}`,cell);
+  }
+}
+
+const flop = new Map();
+flop.set('f1','');
+flop.set('f2','');
+flop.set('f3','');
 const pressed = function(event) {
   if (event.button == 0) {
     event.target.addEventListener("mousemove", moved);
@@ -84,8 +112,8 @@ const moved = function(event) {
     let rank = ranks[constrain(row,0,12)];
     let suite = suites[constrain(column,0,3)];
     event.target.src = faces.get(rank+suite).src;
-    state.set(cname, rank+suite);
-    document.getElementById("show").textContent = `${state.get('f1')} ${state.get('f2')} ${state.get('f3')}`;
+    flop.set(cname, rank+suite);
+    document.getElementById("show").textContent = `${flop.get('f1')} ${flop.get('f2')} ${flop.get('f3')}`;
   }
 }
 for (cardname of ['f1','f2','f3']) {
