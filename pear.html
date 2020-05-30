@@ -1,0 +1,96 @@
+<!-- pear.html -->
+<!-- copyright 2020 jonathan kaufman -->
+
+<!doctype html>
+<div style="width: 500px; height: 250px; text-align: center;">
+  <img id="f1" src="./back3.png" style="width: 144px; height: 205px">
+  <img id="f2" src="./back3.png" style="width: 144px; height: 205px">
+  <img id="f3" src="./back3.png" style="width: 144px; height: 205px">
+  <div id="show" style="width: 75px"></div>
+</div>
+<p><table style="margin: 32PX auto auto auto; padding: 2px;"></table></p>
+<p style="margin: 32PX auto auto auto; padding: 2px; text-align: center;"><button/></p>
+
+<style>
+div    {border-radius:5px; 
+                width: 100; 
+     background-color: rgb(176,230,245);
+               margin: auto auto auto auto;
+              padding: 8px 5px 5px 5px;
+           box-shadow: 5px 5px 5px #777777;}
+
+div div {      box-shadow:0px 0px 0px 252, 241, 217;
+         background-color: rgb(252, 241, 217);
+                   height: 18px;
+                  z-index: 9}
+
+img {   box-shadow: 0px 0px 0px #777777;
+     border-radius:15px;
+           z-index: 7 }
+
+td {    border: 1px solid #990000; 
+         width:24px; 
+        height:24px; 
+    text-align: center;}
+
+td:hover {background-color: rgb(176,230,245);}
+</style>
+
+<script>
+const ranks = ['2','3','4','5','6','7','8','9','T','J','Q','K','A']
+const suites = ['H','D','C','S']
+const faces = new Map;
+for (r of ranks) {
+  for (s of suites) {
+    let img = document.createElement("img");
+    img.src = "pngcards/"+r+s+".png";
+    faces.set(r+s, img)
+  }
+}
+
+let tbl = document.getElementsByTagName("table")[0];
+for (let i=0; i < ranks.length+1; i++) {tbl.appendChild(document.createElement("tr"));}
+let rows = tbl.children;
+for (let i=rows.length-1; i>-1; i--) {
+  for (let i=0; i<14; i++) {rows[i].appendChild(document.createElement("td"));}
+}
+let fart = tbl.children[0].children
+let txt;
+for (let i=1; i<14; i++) {
+  txt = document.createTextNode(ranks[13-i]);
+  fart.item(i).appendChild(txt);
+}
+const state = new Map;
+state.set('f1','');
+state.set('f2','');
+state.set('f3','');
+const pressed = function(event) {
+  if (event.button == 0) {
+    event.target.addEventListener("mousemove", moved);
+    event.preventDefault();
+  }
+}
+const moved = function(event) {
+  if (event.buttons == 0) {
+    event.target.removeEventListener("mousemove", moved);
+  } else {
+    let leftedge = event.target.offsetLeft;
+    let x = event.clientX;
+    let xx=x-leftedge;
+    let cname=event.target.id;
+    let constrain = (num,floor,ceiling) => {return  Math.min(Math.max(floor,num),ceiling)};
+    let row = 13-Math.floor(event.clientY/15);
+    let column = Math.floor(xx/36);
+    let rank = ranks[constrain(row,0,12)];
+    let suite = suites[constrain(column,0,3)];
+    event.target.src = faces.get(rank+suite).src;
+    state.set(cname, rank+suite);
+    document.getElementById("show").textContent = `${state.get('f1')} ${state.get('f2')} ${state.get('f3')}`;
+  }
+}
+for (cardname of ['f1','f2','f3']) {
+  let card = document.getElementById(cardname);
+  card.addEventListener("mousedown", pressed);
+}
+</script>
+
