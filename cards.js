@@ -65,7 +65,7 @@ function flush(a) {
   }
 }
 
-function straight(a) {
+function straight(a, updateDisplay = true) {
   let b = a.map(indextorank)
   let c = new Set(b)
   let srank = undefined
@@ -80,9 +80,14 @@ function straight(a) {
   else if (subset(c,['2', '3', '4', '5', '6'])) {srank ='6'}
   else if (subset(c,['A', '2', '3', '4', '5'])) {srank ='5'}
   else {srank = false}
-  if (srank) {strt.textContent = `STRAIGHT ${srank}`
-              jkc2.textContent =srank} 
-  else {strt.textContent = ""}
+  if (updateDisplay) {
+    if (srank) {
+        strt.textContent = `STRAIGHT ${srank}`;
+        jkc2.textContent = srank;
+    } else {
+        strt.textContent = "";
+    }
+  }
   return srank
 }
 
@@ -104,7 +109,12 @@ function height(a) {
       else {flag++; e = true}   
     }
   }
-  if ((f && g) && (f==g)) {qds.textContent = "STRFL"; return '9'} //need to add overlap restriction
+  if (['C', 'D', 'H', 'S'].some(s =>
+    straight(a.filter(i => indextosuite(i) === s), false)
+  )) {
+    qds.textContent = "STRFL";
+    return '9';
+  }
   else if (c)             {qds.textContent = "4KIND"; return '8'}
   else if (d && e)        {qds.textContent = "FULLH"; return '7'}
   else if (g)             {qds.textContent = "FLUSH"; return '6'}
